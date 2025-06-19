@@ -1,24 +1,23 @@
-import React from 'react';
-import Navbar from './components/Navbar';
-import SkillsChart from './components/SkillsChart';
-import Projects from './components/Projects';
-import Dashboard from './components/Dashboard';
-import Footer from './components/Footer';
-import Switch from './components/Switch';
+import Navbar from './components/Navbar'
+import Home from './components/Home'
+import About from './components/About'
+import Skills from './components/Skills'
+import Projects from './components/Projects'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
 
-
-const App = () => {
+function App() {
   return (
-    <div>
+    <div className="font-sans text-gray-900 scroll-smooth">
       <Navbar />
-      <Dashboard />
-      <SkillsChart />
+      <Home />
+      <About />
+      <Skills />
       <Projects />
-      <Switch />
+      <Contact />
       <Footer />
-      
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

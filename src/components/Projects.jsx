@@ -1,50 +1,61 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
-
-const projects = [
-  { name: "Project 1", description: "A brief description of project 1.", github: "/project1", live: "/project1/live" },
-  { name: "Project 2", description: "A brief description of project 2.", github: "/project2", live: "/project2/live" },
-  { name: "Project 3", description: "A brief description of project 3.", github: "/project3", live: "/project3/live" },
-];
-
 const Projects = () => {
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4">
-      <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center">My Projects</h1>
-      <p className="text-base md:text-lg mb-8 text-center">Here are some of the projects I've worked on:</p>
+  const projects = [
+    {
+      title: 'Portfolio Website',
+      description: 'A modern and responsive developer portfolio built with React and Tailwind CSS.',
+      image: 'https://images.unsplash.com/photo-1581276879432-15a67f2d8b5d?auto=format&fit=crop&w=800&q=80',
+      demoLink: 'https://your-portfolio-demo-link.com',
+      githubLink: 'https://github.com/yourusername/portfolio-project',
+    },
+    {
+      title: 'E-commerce App',
+      description: 'A full-stack MERN application with shopping cart and admin dashboard features.',
+      image: 'src/assets/E-commerse.jpg',
+      demoLink: 'https://your-ecommerce-demo-link.com',
+      githubLink: 'https://github.com/yourusername/ecommerce-app',
+    },
+  ];
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
-        {projects.map((project) => (
-          <motion.div
-            key={project.name}
-            className="bg-white text-black p-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
+  return (
+    <section id="projects" className="py-20 bg-white px-6 text-center">
+      <h2 className="text-4xl font-bold text-blue-600 mb-8">Projects</h2>
+      <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        {projects.map((project, index) => (
+          <div
+            key={index}
+            className="bg-blue-50 p-6 rounded-xl shadow hover:shadow-lg transition text-left"
           >
-            <h3 className="font-bold text-lg md:text-xl">{project.name}</h3>
-            <p className="text-sm md:text-base mt-2">{project.description}</p>
-            
-            <div className="flex flex-col sm:flex-row sm:items-center mt-4 space-y-4 sm:space-y-0 sm:space-x-4">
-              <Link
-                to={project.github}
-                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300 text-center"
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-56 object-cover rounded-lg mb-4 border-4 border-white shadow-md"
+            />
+            <h3 className="text-2xl font-semibold text-blue-700">{project.title}</h3>
+            <p className="text-gray-700 mt-2 mb-4">{project.description}</p>
+
+            {/* Links */}
+            <div className="flex space-x-4">
+              <a
+                href={project.demoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm font-medium"
               >
-                <FaGithub className="inline mr-2" /> View on GitHub
-              </Link>
-              <Link
-                to={project.live}
-                className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-300 text-center"
+                Live Demo
+              </a>
+              <a
+                href={project.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-900 transition text-sm font-medium"
               >
-                <FaExternalLinkAlt className="inline mr-2" /> Live Demo
-              </Link>
+                GitHub
+              </a>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

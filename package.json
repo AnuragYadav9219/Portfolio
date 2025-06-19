@@ -4,24 +4,31 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@react-three/drei": "^9.121.4",
-    "@react-three/fiber": "^8.17.14",
+    "@capacitor/android": "^7.2.0",
+    "@capacitor/cli": "^7.2.0",
+    "@capacitor/core": "^7.2.0",
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
+    "aos": "^2.3.4",
+    "axios": "^1.9.0",
     "chart.js": "^4.4.7",
     "framer-motion": "^12.3.1",
+    "lucide-react": "^0.518.0",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.3.0",
     "react-dom": "^18.3.1",
-    "react-icons": "^5.4.0",
+    "react-icons": "^5.5.0",
     "react-router-dom": "^7.0.2",
     "styled-components": "^6.1.15",
-    "three": "^0.173.0",
-    "tailwindcss": "^3.x"
+    "tailwindcss": "^3.x",
+    "three": "^0.173.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
@@ -36,6 +43,7 @@
     "globals": "^15.12.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.15",
-    "vite": "^6.0.1"
+    "vite": "^6.0.1",
+    "vite-plugin-pwa": "^1.0.0"
   }
 }
