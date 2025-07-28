@@ -68,7 +68,7 @@ const Home = () => {
       <div className="w-full md:w-1/2 flex justify-center items-center h-[60vh] md:h-screen" data-aos="fade-left">
         <div className="relative w-[60vw] h-[60vw] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px]">
           <img
-            src="src/assets/Image.jpg"
+            src="/assets/Image.jpg"
             alt="Anurag Yadav"
             className="w-full h-full object-cover rounded-full border-4 border-white dark:border-gray-700 shadow-lg"
           />

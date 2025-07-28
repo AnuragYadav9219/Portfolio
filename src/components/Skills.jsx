@@ -1,80 +1,113 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import {
-  FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGit,
+  FaReact, FaNodeJs, FaDatabase, FaTools, FaUsers,
+  FaHtml5, FaCss3Alt, FaJava, FaGitAlt
 } from 'react-icons/fa';
 import {
-  SiTailwindcss, SiExpress, SiMysql,
+  SiJavascript, SiRedux, SiTailwindcss, SiMysql, SiFirebase, SiPostman, SiSpringboot
 } from 'react-icons/si';
 
 const skills = [
   {
-    title: 'Frontend',
+    category: 'Frontend Development',
+    icon: <FaReact className="text-sky-500" />,
     items: [
-      { name: 'HTML5', icon: <FaHtml5 className="text-orange-600" /> },
-      { name: 'CSS3', icon: <FaCss3Alt className="text-blue-600" /> },
-      { name: 'JavaScript', icon: <FaJs className="text-yellow-400" /> },
-      { name: 'React', icon: <FaReact className="text-cyan-400" /> },
-      { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-sky-400" /> },
+      { name: 'HTML5', icon: <FaHtml5 /> },
+      { name: 'CSS3', icon: <FaCss3Alt /> },
+      { name: 'JavaScript', icon: <SiJavascript /> },
+      { name: 'React', icon: <FaReact /> },
+      { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
+      { name: 'Redux', icon: <SiRedux /> },
     ],
   },
   {
-    title: 'Backend',
+    category: 'Backend Development',
+    icon: <FaNodeJs className="text-green-600" />,
     items: [
-      { name: 'Node.js', icon: <FaNodeJs className="text-green-500" /> },
-      { name: 'Express.js', icon: <SiExpress className="text-gray-700 dark:text-gray-300" /> },
-      { name: 'MySQL', icon: <SiMysql className="text-blue-700" /> },
+      { name: 'Node.js', icon: <FaNodeJs /> },
+      { name: 'Express.js', icon: <FaNodeJs /> },
+      { name: 'Java', icon: <FaJava /> },
+      { name: 'Spring Boot', icon: <SiSpringboot /> },
     ],
   },
   {
-    title: 'Tools',
+    category: 'Databases',
+    icon: <FaDatabase className="text-purple-600" />,
     items: [
-      { name: 'Git', icon: <FaGit className="text-red-600" /> },
+      { name: 'MySQL', icon: <SiMysql /> }
+    ],
+  },
+  {
+    category: 'Tools & Platforms',
+    icon: <FaTools className="text-yellow-600" />,
+    items: [
+      { name: 'Git', icon: <FaGitAlt /> },
+      { name: 'GitHub', icon: <FaGitAlt /> },
+      { name: 'Firebase', icon: <SiFirebase /> },
+      { name: 'Postman', icon: <SiPostman /> },
+      { name: 'VS Code', icon: <FaTools /> },
+      { name: 'Netlify', icon: <FaTools /> },
+      { name: 'Vercel', icon: <FaTools /> },
+    ],
+  },
+  {
+    category: 'Soft Skills',
+    icon: <FaUsers className="text-pink-500" />,
+    items: [
+      { name: 'Team Collaboration' },
+      { name: 'Problem Solving' },
+      { name: 'Time Management' },
+      { name: 'Communication' },
     ],
   },
 ];
 
 const Skills = () => {
   useEffect(() => {
-    AOS.init({ duration: 800, offset: 100, easing: 'ease-in-out' });
+    AOS.init({ duration: 1000 });
   }, []);
 
   return (
     <section
       id="skills"
-      className="py-20 px-4 md:px-12 bg-gradient-to-br from-blue-50 to-purple-100 dark:from-gray-900 dark:to-gray-950"
+      className="py-24 px-6 bg-gradient-to-b from-white to-blue-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-500"
     >
-      <h2 className="text-4xl font-bold text-center mb-16 text-gray-800 dark:text-white">
-        My Skills
-      </h2>
+      <div className="max-w-6xl mx-auto text-center">
+        <h2 className="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-2">
+          Skills
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400 mb-12">
+          A quick overview of my technical and soft skills
+        </p>
 
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10 max-w-7xl mx-auto">
-        {skills.map((category, index) => (
-          <div
-            key={index}
-            data-aos="fade-up"
-            className="bg-white/70 dark:bg-white/10 backdrop-blur-xl p-6 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-xl transition-all hover:shadow-2xl"
-          >
-            <h3 className="text-2xl font-semibold text-center text-gray-800 dark:text-white mb-6">
-              {category.title}
-            </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {skills.map((group, index) => (
+            <div
+              key={group.category}
+              data-aos={index % 2 === 0 ? 'fade-up' : 'fade-down'}
+              className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-md hover:shadow-lg transition-all"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="text-2xl">{group.icon}</div>
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-white">{group.category}</h3>
+              </div>
 
-            <div className="grid grid-cols-3 gap-6 justify-items-center">
-              {category.items.map((skill, idx) => (
-                <div
-                  key={idx}
-                  className="flex flex-col items-center text-center transform transition-transform hover:scale-110 hover:shadow-md"
-                >
-                  <div className="text-4xl mb-2">{skill.icon}</div>
-                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <div className="flex flex-wrap gap-3 mt-3">
+                {group.items.map((skill) => (
+                  <div
+                    key={skill.name}
+                    className="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-white px-3 py-1 rounded-full text-sm font-medium"
+                  >
+                    {skill.icon && <span className="text-base">{skill.icon}</span>}
                     {skill.name}
-                  </p>
-                </div>
-              ))}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

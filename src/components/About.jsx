@@ -12,11 +12,15 @@ const About = () => {
       id="about"
       className="py-24 px-6 bg-gradient-to-b from-white to-blue-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-500"
     >
+      <h2 className="text-4xl font-extrabold text-blue-700 flex justify-center dark:text-blue-400 mb-4 leading-tight">
+        About <span className="text-gray-800 ml-3 dark:text-gray-100">Me</span>
+      </h2>
+
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-14 items-center">
         {/* Profile Image */}
         <div className="text-center" data-aos="fade-right">
           <img
-            src="src/assets/Img.jpg"
+            src="/assets/Img.jpg"
             alt="Anurag Yadav"
             className="w-72 h-72 rounded-full object-cover mx-auto border-4 border-blue-300 dark:border-blue-500 shadow-xl hover:scale-105 transition-transform duration-500"
           />
@@ -27,10 +31,6 @@ const About = () => {
 
         {/* Bio */}
         <div data-aos="fade-left">
-          <h2 className="text-4xl font-extrabold text-blue-700 dark:text-blue-400 mb-4 leading-tight">
-            About <span className="text-gray-800 dark:text-gray-100">Me</span>
-          </h2>
-
           <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
             I'm <span className="font-semibold text-blue-700 dark:text-blue-400">Anurag Yadav</span>, a creative and
             passionate full-stack developer from India with a strong interest in building clean, responsive, and
