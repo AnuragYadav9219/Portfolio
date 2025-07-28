@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <section
       id="home"
-      className="min-h-screen w-full flex flex-col-reverse md:flex-row items-center justify-center px-6 sm:px-10 md:px-20 py-12 md:py-0 bg-gradient-to-br from-blue-100 via-white to-blue-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors"
+      className="min-h-screen w-full flex mx-auto flex-col-reverse md:flex-row items-center justify-center px-6 sm:px-10 md:px-20 py-12 md:py-0 bg-gradient-to-br from-blue-100 via-white to-blue-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors"
     >
       {/* 👉 Text Content */}
       <div className="w-full md:w-1/2 text-center md:text-left mt-10 md:mt-0" data-aos="fade-right">

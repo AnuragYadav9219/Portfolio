@@ -25,17 +25,19 @@ function App() {
   }, [isDarkMode]);
 
   return (
-    <div className="font-sans text-textDark dark:text-textLight scroll-smooth transition-colors duration-300">
+    <div className="font-sans text-textDark dark:text-textLight scroll-smooth transition-colors duration-300 overflow-x-hidden">
       <button
         onClick={handleThemeToggle}
         aria-label="Toggle Theme"
         title="Switch Theme"
-        className={`fixed bottom-5 right-5 z-50 p-4 animate-bounce rounded-full transition duration-300 
-        bg-white dark:bg-gray-900 text-blue-600 dark:text-yellow-400 
-        border border-gray-500 dark:border-yellow-300
-        shadow-md shadow-white backdrop-blur 
-        hover:scale-105 hover:-translate-y-1 hover:shadow-2xl
-        transform ease-in-out`}
+       className={`fixed bottom-5 right-5 z-50 p-4 max-w-[calc(100vw-2rem)] overflow-hidden 
+  animate-bounce rounded-full transition duration-300 
+  bg-white dark:bg-gray-900 text-blue-600 dark:text-yellow-400 
+  border border-gray-500 dark:border-yellow-300
+  shadow-md shadow-white backdrop-blur 
+  hover:scale-105 hover:-translate-y-1 hover:shadow-2xl
+  transform ease-in-out`}
+
       >
         {/* Pulsing Glow Ring */}
         <span
