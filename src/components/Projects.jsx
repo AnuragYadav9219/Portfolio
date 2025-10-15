@@ -19,23 +19,24 @@ const Projects = () => {
       title: 'Portfolio Website',
       description: 'A modern and responsive developer portfolio built with React and Tailwind CSS.',
       image: '/assets/Portfolio.jpg',
-      demoLink: 'https://your-portfolio-demo-link.com',
+      demoLink: 'https://anuragyadav-sigma.vercel.app',
       githubLink: 'https://github.com/AnuragYadav9219/Portfolio',
     },
     {
       title: 'E-commerce App',
       description: 'A full-stack MERN application with shopping cart and admin dashboard features.',
       image: '/assets/E-commerse.jpg',
-      demoLink: 'https://your-ecommerce-demo-link.com',
+      demoLink: '#',
       githubLink: 'https://github.com/AnuragYadav9219/A-Kart',
     },
     {
-      title: 'Expense Tracker App',
-      description: 'A full-stack application with expense tracking and admin dashboard features.',
-      image: '/assets/expenseTracker.jpg',
-      demoLink: 'https://your-ecommerce-demo-link.com',
-      githubLink: 'https://github.com/AnuragYadav9219/Expense-Tracker',
-    },
+      title: 'ChatMate',
+      description: 'A real-time social media and chat application where users can connect, share posts, create reels, and chat instantly. Built with React, Redux, Tailwind CSS, and springboot for seamless authentication and messaging experience.',
+      image: '/assets/chat.png',
+      demoLink: 'https://your-chatmate-demo-link.com',
+      githubLink: 'https://github.com/AnuragYadav9219/ChatMate',
+    }
+
   ];
 
   return (

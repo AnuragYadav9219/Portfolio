@@ -20,7 +20,7 @@ const About = () => {
         {/* Profile Image */}
         <div className="text-center" data-aos="fade-right">
           <img
-            src="/assets/Img.jpg"
+            src="/assets/Image.png"
             alt="Anurag Yadav"
             className="w-72 h-72 rounded-full object-cover mx-auto border-4 border-blue-300 dark:border-blue-500 shadow-xl hover:scale-105 transition-transform duration-500"
           />
