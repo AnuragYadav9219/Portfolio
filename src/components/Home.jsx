@@ -20,9 +20,9 @@ const Home = () => {
         className="w-full md:w-1/2 text-center md:text-left space-y-6"
         data-aos="fade-right"
       >
-        <h1 className="text-4xl sm:text-5xl xl:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight">
-          Software Engineer
-          <span className="block text-blue-600 dark:text-blue-400">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight tracking-tight">
+          Software Engineer{' '}
+          <span className="inline md:block text-blue-600 dark:text-blue-400">
             Building Scalable Systems
           </span>
         </h1>
