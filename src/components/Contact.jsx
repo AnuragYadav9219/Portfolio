@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import emailjs from "emailjs-com";
+import { toast } from 'sonner';
 
 const Contact = () => {
   useEffect(() => {
@@ -26,8 +27,29 @@ const Contact = () => {
     }));
   }
 
+  const isValidEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
+    // Validations
+    if (data.name.trim().length < 2) {
+      toast.error("Please enter a valid name.");
+      return;
+    }
+
+    if (!isValidEmail(data.email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+
+    if (data.message.trim().length < 10) {
+      toast.error("Message must be at least 10 characters.");
+      return;
+    }
+
     setLoading(true);
 
     emailjs
@@ -48,12 +70,12 @@ const Contact = () => {
           email: '',
           message: '',
         });
-        alert("Message sent successfully!");
+        toast.success("Message sent successfully!");
       })
       .catch((error) => {
         console.error("EmailJS Error: ", error);
         setLoading(false);
-        alert("Failed to send message. Please try again.")
+        toast.error("Failed to send message. Please try again.")
       });
   };
 
@@ -127,12 +149,19 @@ const Contact = () => {
 
           {/* Submit Button */}
           <button
-            disabled={loading}
+            disabled={
+              loading ||
+              data.name.trim().length < 2 ||
+              !isValidEmail(data.email) ||
+              data.message.trim().length < 10
+            }
             type="submit"
-            className="w-full bg-blue-600 dark:bg-blue-500 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 dark:hover:bg-blue-600 hover:scale-105 transition transform duration-300 shadow-md hover:shadow-lg"
+            className=
+            "w-full bg-blue-600 dark:bg-blue-500 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 dark:hover:bg-blue-600 hover:scale-105 transition transform duration-300 shadow-md hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {loading ? 'Sending . . .' : 'Send Message'}
+            {loading ? 'Sending...' : 'Send Message'}
           </button>
+
         </form>
 
         {/* Email Info */}
