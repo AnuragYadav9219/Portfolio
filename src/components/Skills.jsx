@@ -7,12 +7,15 @@ import {
   FaClock,
   FaComments,
   FaSyncAlt,
-  FaUserTie
+  FaUserTie,
+  FaShieldAlt,
+  FaKey
 } from "react-icons/fa";
 import {
   SiJavascript, SiRedux, SiTailwindcss, SiMysql,
   SiFirebase, SiPostman, SiSpringboot
 } from "react-icons/si";
+import { Package } from "lucide-react";
 
 const skills = [
   {
@@ -26,6 +29,7 @@ const skills = [
       { name: "React", icon: <FaReact /> },
       { name: "Tailwind CSS", icon: <SiTailwindcss /> },
       { name: "Redux", icon: <SiRedux /> },
+      { name: "Shadcn/ui", icon: <Package size={16} strokeWidth={1.8} /> },
     ],
   },
   {
@@ -35,7 +39,9 @@ const skills = [
     items: [
       { name: "Java", icon: <FaJava /> },
       { name: "Spring Boot", icon: <SiSpringboot /> },
-      { name: "Firebase", icon: <SiFirebase /> },
+      { name: "Microservices Architecture", icon: <FaServer /> },
+      { name: "Spring Security", icon: <FaShieldAlt /> },
+      { name: "JWT Authentication & Authorization", icon: <FaKey /> },
       { name: "RESTful APIs", icon: <FaServer /> },
     ],
   },
@@ -63,19 +69,16 @@ const skills = [
     ],
   },
   {
-    category: "Soft Skills",
-    icon: <FaUsers className="text-pink-500" />,
+    category: "Professional Skills",
+    icon: <FaUserTie className="text-pink-500" />,
     gradient: "from-pink-500/10 to-rose-400/5",
     items: [
-      { name: "Team Collaboration", icon: <FaUsers /> },
       { name: "Problem Solving", icon: <FaTools /> },
+      { name: "Clear Communication", icon: <FaComments /> },
+      { name: "Team Collaboration", icon: <FaUsers /> },
       { name: "Time Management", icon: <FaClock /> },
-      { name: "Communication", icon: <FaComments /> },
-      { name: "Adaptability", icon: <FaSyncAlt /> },
-      { name: "Leadership", icon: <FaUserTie /> },
     ],
   },
-
 ];
 
 const Skills = () => {

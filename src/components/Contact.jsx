@@ -1,11 +1,61 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import emailjs from "emailjs-com";
 
 const Contact = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, once: true, easing: 'ease-in-out' });
   }, []);
+
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  // Handle Input Change
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    emailjs
+      .send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: data.name,
+          from_email: data.email,
+          message: data.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      .then(() => {
+        setLoading(false);
+        setData({
+          name: '',
+          email: '',
+          message: '',
+        });
+        alert("Message sent successfully!");
+      })
+      .catch((error) => {
+        console.error("EmailJS Error: ", error);
+        setLoading(false);
+        alert("Failed to send message. Please try again.")
+      });
+  };
 
   return (
     <section
@@ -27,7 +77,7 @@ const Contact = () => {
         data-aos="fade-up"
         data-aos-delay="200"
       >
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleFormSubmit}>
           {/* Name */}
           <div>
             <label className="block text-left text-gray-700 dark:text-gray-200 font-medium mb-2">
@@ -35,7 +85,11 @@ const Contact = () => {
             </label>
             <input
               type="text"
+              name='name'
+              value={data.name}
+              onChange={handleInputChange}
               placeholder="Your Name"
+              required
               className="w-full px-5 py-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all duration-300"
             />
           </div>
@@ -47,6 +101,9 @@ const Contact = () => {
             </label>
             <input
               type="email"
+              name='email'
+              value={data.email}
+              onChange={handleInputChange}
               placeholder="you@example.com"
               className="w-full px-5 py-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all duration-300"
             />
@@ -58,18 +115,23 @@ const Contact = () => {
               Message
             </label>
             <textarea
+              name='message'
               rows="6"
+              value={data.message}
+              onChange={handleInputChange}
               placeholder="Your message..."
+              required
               className="w-full px-5 py-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all duration-300 resize-none"
-            ></textarea>
+            />
           </div>
 
           {/* Submit Button */}
           <button
+            disabled={loading}
             type="submit"
             className="w-full bg-blue-600 dark:bg-blue-500 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 dark:hover:bg-blue-600 hover:scale-105 transition transform duration-300 shadow-md hover:shadow-lg"
           >
-            Send Message
+            {loading ? 'Sending . . .' : 'Send Message'}
           </button>
         </form>
 

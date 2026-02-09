@@ -15,7 +15,7 @@ const Footer = () => {
             label: "GitHub"
           },{
             icon: <FaLinkedin />,
-            link: "https://linkedin.com/in/anurag-yadav-98a79928b",
+            link: "https://linkedin.com/in/anurag-yadav7800",
             label: "LinkedIn"
           },{
             icon: <FaEnvelope />,

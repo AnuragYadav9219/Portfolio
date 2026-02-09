@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 import { Sun, Moon } from 'lucide-react';
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   const handleThemeToggle = () => {
     setIsDarkMode(!isDarkMode);
@@ -30,7 +30,7 @@ function App() {
         onClick={handleThemeToggle}
         aria-label="Toggle Theme"
         title="Switch Theme"
-       className={`fixed bottom-5 right-5 z-50 p-4 max-w-[calc(100vw-2rem)] overflow-hidden 
+        className={`fixed bottom-5 right-5 z-50 p-4 max-w-[calc(100vw-2rem)] overflow-hidden 
   animate-bounce rounded-full transition duration-300 
   bg-white dark:bg-gray-900 text-blue-600 dark:text-yellow-400 
   border border-gray-500 dark:border-yellow-300
