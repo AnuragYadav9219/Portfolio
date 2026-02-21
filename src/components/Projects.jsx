@@ -49,7 +49,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-20 px-6 bg-gray-50 dark:bg-gray-900 transition-colors duration-500"
+      className="py-20 scroll-mt-24 px-6 bg-gray-50 dark:bg-gray-900 transition-colors duration-500"
     >
       {/* Section Header */}
       <div className="text-center mb-14">

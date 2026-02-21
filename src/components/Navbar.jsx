@@ -7,7 +7,6 @@ const Navbar = () => {
 
   const links = ['Home', 'About', 'Skills', 'Projects', 'Contact'];
 
-  // Close mobile menu on resize
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) setIsOpen(false);
@@ -16,7 +15,6 @@ const Navbar = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Track active section
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -41,12 +39,10 @@ const Navbar = () => {
       className="fixed top-0 w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200/70 dark:border-gray-700/60 shadow-[0_1px_4px_rgba(0,0,0,0.08)] dark:shadow-[0_1px_6px_rgba(0,0,0,0.6)] transition-colors duration-300"
     >
       <div className="max-w-6xl mx-auto flex justify-between items-center px-4 py-3">
-        {/* Logo */}
         <h1 className="text-xl font-bold text-blue-600 dark:text-blue-400">
           Anurag Yadav
         </h1>
 
-        {/* Mobile Button */}
         <div
           className="md:hidden cursor-pointer text-2xl text-gray-800 dark:text-gray-200"
           onClick={() => setIsOpen(!isOpen)}
@@ -60,9 +56,16 @@ const Navbar = () => {
             const id = link.toLowerCase();
             return (
               <li key={id}>
-                <a href={`#${id}`} className={getLinkClass(id)}>
+                <button
+                  onClick={() => {
+                    document.getElementById(id)?.scrollIntoView({
+                      behavior: "smooth",
+                    });
+                  }}
+                  className={getLinkClass(id)}
+                >
                   {link}
-                </a>
+                </button>
               </li>
             );
           })}
@@ -76,16 +79,18 @@ const Navbar = () => {
             const id = link.toLowerCase();
             return (
               <li key={id}>
-                <a
-                  href={`#${id}`}
+                <button
                   onClick={() => {
+                    document.getElementById(id)?.scrollIntoView({
+                      behavior: "smooth",
+                    });
                     setActive(id);
                     setTimeout(() => setIsOpen(false), 200);
                   }}
                   className={getLinkClass(id)}
                 >
                   {link}
-                </a>
+                </button>
               </li>
             );
           })}

@@ -1,8 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
 const About = () => {
+  const [loading, setLoading] = useState(true)
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -28,22 +30,39 @@ const About = () => {
   return (
     <section
       id="about"
-      className="py-24 px-6 bg-gradient-to-b from-white to-blue-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-500"
+      className="py-24 px-6 scroll-mt-24 bg-gradient-to-b from-white to-blue-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-500"
     >
       <h2 className="text-4xl font-extrabold text-blue-700 flex justify-center dark:text-blue-400 mb-12">
         About <span className="text-gray-800 ml-3 dark:text-gray-100">Me</span>
       </h2>
 
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-        {/* Image */}
-        <div className="relative text-center" data-aos="fade-right">
-          <div className="absolute -inset-2 rounded-full bg-blue-100 dark:bg-blue-900 blur-xl opacity-30"></div>
 
-          <img
-            src="/assets/Image.png"
-            alt="Anurag Yadav"
-            className="relative w-72 h-72 rounded-full object-cover mx-auto border-4 border-blue-300 dark:border-blue-500 shadow-xl"
-          />
+        {/* Image Section */}
+        <div className="relative text-center" data-aos="fade-right">
+
+          <div className="relative w-72 h-80 mx-auto sm:w-72 sm:h-72 lg:w-[420px] lg:h-[420px]">
+
+            {/* Glow */}
+            <div className="absolute inset-0 rounded-2xl sm:rounded-full bg-blue-200 dark:bg-blue-900 blur-2xl opacity-20 -z-10"></div>
+
+            {/* Skeleton Loader */}
+            {loading && (
+              <div className="absolute inset-0 rounded-2xl sm:rounded-full overflow-hidden z-20">
+                <div className="w-full h-full bg-gray-300 dark:bg-gray-700 relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-[shimmer_1.5s_infinite]"></div>
+                </div>
+              </div>
+            )}
+
+            {/* Image */}
+            <img
+              src="/assets/Image1.jpg"
+              alt="Anurag Yadav"
+              onLoad={() => setLoading(false)}
+              className={`w-full h-full rounded-2xl sm:rounded-full object-cover border-4 border-blue-300 dark:border-blue-500 shadow-xl transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}
+            />
+          </div>
 
           <div className="mt-4 text-blue-600 dark:text-blue-400 font-semibold">
             Software Engineer | Full Stack Java Developer
@@ -63,8 +82,8 @@ const About = () => {
             <strong> microservices</strong>, develop <strong>REST APIs</strong>,
             handle <strong>transaction management</strong>, and implement
             <strong> authentication & authorization</strong>.
-            On the frontend, I build responsive UIs using <strong>React</strong>, <strong>Shadcn</strong> and
-            <strong> Tailwind CSS</strong>.
+            On the frontend, I build responsive UIs using <strong>React</strong>,
+            <strong> Shadcn</strong> and <strong> Tailwind CSS</strong>.
           </p>
 
           {/* Skills */}
@@ -88,9 +107,10 @@ const About = () => {
             </a>
           </div>
         </div>
+
       </div>
     </section>
   )
 }
 
-export default About
+export default About;

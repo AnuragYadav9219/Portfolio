@@ -89,7 +89,7 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="relative py-24 px-6 bg-gradient-to-b from-white to-blue-50 dark:from-gray-950 dark:to-gray-900 overflow-hidden"
+      className="relative scroll-mt-24 py-24 px-6 bg-gradient-to-b from-white to-blue-50 dark:from-gray-950 dark:to-gray-900 overflow-hidden"
     >
       {/* Background Blobs */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-blue-300/20 rounded-full blur-3xl animate-pulse"></div>
