@@ -19,14 +19,13 @@ const Projects = () => {
       demoLink: 'https://anuragyadav-sigma.vercel.app',
       githubLink: 'https://github.com/AnuragYadav9219/Portfolio',
       tags: ['React', 'Tailwind'],
-    },
-    {
-      title: 'E-commerce App',
-      description: 'A frontend application with shopping cart and admin dashboard features.',
-      image: '/assets/E-commerse.png',
-      demoLink: 'https://github.com/AnuragYadav9219/A-Kart',
-      githubLink: 'https://github.com/AnuragYadav9219/A-Kart',
-      tags: ['React', 'Redux'],
+    }, {
+      title: 'Invoxa',
+      description: 'A smart invoice generator and reminder web application with automated billing, payment tracking, and reminder notifications.',
+      image: '/assets/invoice.png',
+      demoLink: 'https://github.com/AnuragYadav9219/Invoxa',
+      githubLink: 'https://github.com/AnuragYadav9219/Invoxa',
+      tags: ['React', 'Spring Boot', 'MySQL', 'Tailwind', 'Redux'],
     },
     {
       title: 'ChatMate',
