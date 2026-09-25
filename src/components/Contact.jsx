@@ -3,10 +3,22 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import emailjs from "emailjs-com";
 import { toast } from "sonner";
+import {
+  ArrowUpRight,
+  Check,
+  Mail,
+  MessageCircle,
+  Send,
+  Sparkles,
+} from "lucide-react";
 
 const Contact = () => {
   useEffect(() => {
-    AOS.init({ duration: 1000, once: true, easing: "ease-in-out" });
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: "ease-out-cubic",
+    });
   }, []);
 
   const [data, setData] = useState({
@@ -19,15 +31,10 @@ const Contact = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const isValidEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const isFormValid =
     data.name.trim().length >= 2 &&
@@ -67,11 +74,7 @@ const Contact = () => {
       )
       .then(() => {
         setLoading(false);
-        setData({
-          name: "",
-          email: "",
-          message: "",
-        });
+        setData({ name: "", email: "", message: "" });
         toast.success("Message sent successfully!");
       })
       .catch((error) => {
@@ -84,118 +87,272 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-24 scroll-mt-24 px-6 bg-blue-100 dark:bg-gray-900 transition-colors duration-500"
+      className="relative overflow-hidden bg-[#050505] px-5 py-28 text-white sm:px-8 sm:py-32 lg:px-16 lg:py-40"
     >
-      <div className="max-w-4xl mx-auto text-center" data-aos="fade-up">
-        <h2 className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-6">
-          Get in Touch
-        </h2>
-        <p className="text-gray-700 dark:text-gray-300 text-lg mb-12">
-          I'm open to collaborations, freelance opportunities, or just a friendly chat.
-          Fill out the form or drop me an email!
-        </p>
+      {/* BACKGROUND */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="contact-grid absolute inset-0" />
+        <div className="absolute -right-40 top-20 h-[400px] w-[400px] rounded-full bg-cyan-400/[0.035] blur-[150px] sm:h-[550px] sm:w-[550px]" />
+        <div className="absolute -bottom-48 -left-40 h-[450px] w-[450px] rounded-full bg-purple-500/[0.025] blur-[160px]" />
+        <div className="contact-orb absolute left-[15%] top-[35%] h-1 w-1 rounded-full bg-cyan-400" />
       </div>
 
-      <div
-        className="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-500"
-        data-aos="fade-up"
-        data-aos-delay="200"
-      >
-        <form className="space-y-6" onSubmit={handleFormSubmit}>
-          {/* Name */}
-          <div>
-            <label className="block text-left text-gray-700 dark:text-gray-200 font-medium mb-2">
-              Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={data.name}
-              onChange={handleInputChange}
-              placeholder="Your Name"
-              className="w-full px-5 py-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all duration-300"
-            />
+      {/* CONTENT */}
+      <div className="relative z-10 mx-auto max-w-7xl">
+
+        {/* HEADER */}
+        <div data-aos="fade-up" className="mb-16 lg:mb-24">
+          <div className="mb-6 flex items-center gap-3">
+            <span className="text-xs font-semibold text-cyan-400">05</span>
+            <span className="h-px w-10 bg-cyan-400/70" />
+            <span className="text-[10px] uppercase tracking-[0.35em] text-white/40 sm:text-xs">
+              Let's connect
+            </span>
           </div>
 
-          {/* Email */}
-          <div>
-            <label className="block text-left text-gray-700 dark:text-gray-200 font-medium mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={data.email}
-              onChange={handleInputChange}
-              placeholder="you@example.com"
-              className="w-full px-5 py-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all duration-300"
-            />
-          </div>
-
-          {/* Message */}
-          <div>
-            <label className="block text-left text-gray-700 dark:text-gray-200 font-medium mb-2">
-              Message
-            </label>
-            <textarea
-              name="message"
-              rows="6"
-              value={data.message}
-              onChange={handleInputChange}
-              placeholder="Your message (min 5 characters)..."
-              className="w-full px-5 py-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all duration-300 resize-none"
-            />
-          </div>
-
-          {/* Submit Button + Tooltip */}
-          <div className="relative group">
-            <button
-              disabled={loading || !isFormValid}
-              type="submit"
-              className={`w-full flex items-center justify-center gap-3
-                py-3 rounded-xl font-semibold transition-all duration-300 shadow-md
-                ${loading || !isFormValid
-                  ? "bg-blue-400 dark:bg-blue-400 cursor-not-allowed opacity-70"
-                  : "bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 hover:scale-105 hover:shadow-lg"
-                }`}
+          <div className="overflow-hidden">
+            <h2
+              data-aos="fade-up"
+              data-aos-delay="100"
+              className="text-[clamp(4rem,11vw,10rem)] font-black leading-[0.78] tracking-[-0.08em] text-white"
             >
-              {loading ? (
-                <>
-                  <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                  Sending...
-                </>
-              ) : (
-                "Send Message"
-              )}
-            </button>
-
-            {/* Tooltip */}
-            {!isFormValid && !loading && (
-              <div
-                className="absolute left-1/2 -translate-x-1/2 -top-12
-                whitespace-nowrap px-4 py-2 text-sm rounded-lg
-                bg-gray-900 text-white opacity-0 scale-95
-                group-hover:opacity-100 group-hover:scale-100
-                transition-all duration-300 pointer-events-none"
-              >
-                {disabledMessage}
-              </div>
-            )}
+              CONTACT
+            </h2>
           </div>
-        </form>
 
-        {/* Email Info */}
-        <div className="mt-12 text-center text-gray-600 dark:text-gray-400">
-          <p>
-            Or email me at{" "}
-            <a
-              href="mailto:anuragyad1398@gmail.com"
-              className="text-blue-600 dark:text-blue-400 hover:underline"
-            >
-              anuragyad1398@gmail.com
-            </a>
-          </p>
+          <div
+            data-aos="fade-up"
+            data-aos-delay="200"
+            className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center"
+          >
+            <p className="max-w-xl text-sm leading-[1.9] text-[#a8a8a8] sm:text-base">
+              Have an idea, a project, or just want to talk about technology? Drop me a message. I'd love to hear from you.
+            </p>
+            <span className="hidden h-px w-16 bg-white/10 sm:block" />
+            <div className="flex items-center gap-2 text-[9px] uppercase tracking-[0.25em] text-cyan-400/70">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400" />
+              Available for opportunities
+            </div>
+          </div>
         </div>
+
+        {/* MAIN GRID */}
+        <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16 xl:gap-24">
+
+          {/* LEFT INFORMATION */}
+          <div data-aos="fade-right" className="flex flex-col justify-between">
+            <div>
+              <span className="text-[9px] uppercase tracking-[0.3em] text-cyan-400">
+                Start a conversation
+              </span>
+              <h3 className="mt-4 max-w-sm text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl">
+                Let's build something <span className="text-cyan-400">meaningful.</span>
+              </h3>
+              <p className="mt-6 max-w-md text-sm leading-[1.9] text-[#888]">
+                Whether you're building a product, exploring an idea, or looking for a developer to join your team, feel free to reach out.
+              </p>
+            </div>
+
+            {/* contact cards */}
+            <div className="mt-10 space-y-3">
+              <a
+                href="mailto:anuragyad1398@gmail.com"
+                className="group flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/20 hover:bg-white/[0.045]"
+              >
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cyan-400/20 bg-cyan-400/[0.06] text-cyan-400">
+                  <Mail size={17} />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-[8px] uppercase tracking-[0.25em] text-[#555]">Email</div>
+                  <div className="mt-1 truncate text-xs text-[#c5c5c5] transition-colors group-hover:text-white sm:text-sm">
+                    anuragyad1398@gmail.com
+                  </div>
+                </div>
+                <ArrowUpRight size={15} className="ml-auto shrink-0 text-[#444] transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-cyan-400" />
+              </a>
+
+              <div className="flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-green-400/20 bg-green-400/[0.05]">
+                  <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-green-400 shadow-[0_0_14px_rgba(74,222,128,0.8)]" />
+                </div>
+                <div>
+                  <div className="text-[8px] uppercase tracking-[0.25em] text-[#555]">Current status</div>
+                  <div className="mt-1 text-xs text-[#c5c5c5] sm:text-sm">Open to opportunities</div>
+                </div>
+              </div>
+            </div>
+
+            {/* bottom quote */}
+            <div className="mt-10 hidden border-t border-white/[0.08] pt-6 lg:block">
+              <div className="flex items-center gap-2 text-[9px] uppercase tracking-[0.25em] text-[#555]">
+                <Sparkles size={12} className="text-cyan-400" />
+                Keep building
+              </div>
+              <p className="mt-3 text-xs leading-relaxed text-[#666]">
+                Learn continuously. Build intentionally. Solve problems that matter.
+              </p>
+            </div>
+          </div>
+
+          {/* FORM */}
+          <div
+            data-aos="fade-left"
+            data-aos-delay="150"
+            className="relative overflow-hidden rounded-3xl border border-white/[0.1] bg-[#0a0a0a] shadow-[0_30px_100px_rgba(0,0,0,0.4)]"
+          >
+            <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-cyan-400/[0.045] blur-[90px]" />
+            <div className="pointer-events-none absolute inset-1 rounded-[22px] border border-white/[0.035]" />
+
+            <div className="relative z-10 p-6 sm:p-8 lg:p-10">
+              <div className="mb-8 flex items-start justify-between gap-4">
+                <div>
+                  <div className="text-[9px] uppercase tracking-[0.3em] text-cyan-400">
+                    Send a message
+                  </div>
+                  <h3 className="mt-2 text-xl font-medium text-white sm:text-2xl">
+                    Tell me about your idea.
+                  </h3>
+                </div>
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-cyan-400">
+                  <MessageCircle size={17} />
+                </div>
+              </div>
+
+              <form className="space-y-6" onSubmit={handleFormSubmit}>
+                {/* NAME */}
+                <div className="group">
+                  <label htmlFor="name" className="mb-2 block text-[9px] font-medium uppercase tracking-[0.25em] text-[#777] transition-colors group-focus-within:text-cyan-400">
+                    Your name
+                  </label>
+                  <div className="relative">
+                    <input
+                      id="name"
+                      type="text"
+                      name="name"
+                      value={data.name}
+                      onChange={handleInputChange}
+                      placeholder="John Doe"
+                      className="w-full rounded-xl border border-white/[0.1] bg-white/[0.025] px-4 py-3.5 text-sm text-white outline-none placeholder:text-[#444] transition-all duration-300 focus:border-cyan-400/40 focus:bg-white/[0.04] focus:shadow-[0_0_30px_rgba(34,211,238,0.04)]"
+                    />
+                    {data.name.trim().length >= 2 && (
+                      <Check size={15} className="absolute right-4 top-1/2 -translate-y-1/2 text-green-400" />
+                    )}
+                  </div>
+                </div>
+
+                {/* EMAIL */}
+                <div className="group">
+                  <label htmlFor="email" className="mb-2 block text-[9px] font-medium uppercase tracking-[0.25em] text-[#777] transition-colors group-focus-within:text-cyan-400">
+                    Email address
+                  </label>
+                  <div className="relative">
+                    <input
+                      id="email"
+                      type="email"
+                      name="email"
+                      value={data.email}
+                      onChange={handleInputChange}
+                      placeholder="you@example.com"
+                      className="w-full rounded-xl border border-white/[0.1] bg-white/[0.025] px-4 py-3.5 text-sm text-white outline-none placeholder:text-[#444] transition-all duration-300 focus:border-cyan-400/40 focus:bg-white/[0.04] focus:shadow-[0_0_30px_rgba(34,211,238,0.04)]"
+                    />
+                    {isValidEmail(data.email) && (
+                      <Check size={15} className="absolute right-4 top-1/2 -translate-y-1/2 text-green-400" />
+                    )}
+                  </div>
+                </div>
+
+                {/* MESSAGE */}
+                <div className="group">
+                  <div className="mb-2 flex items-center justify-between">
+                    <label htmlFor="message" className="block text-[9px] font-medium uppercase tracking-[0.25em] text-[#777] transition-colors group-focus-within:text-cyan-400">
+                      Message
+                    </label>
+                    <span className={`text-[9px] ${data.message.length >= 5 ? "text-green-400" : "text-[#444]"}`}>
+                      {data.message.length}
+                    </span>
+                  </div>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="6"
+                    value={data.message}
+                    onChange={handleInputChange}
+                    placeholder="Tell me a little about your project..."
+                    className="w-full resize-none rounded-xl border border-white/[0.1] bg-white/[0.025] px-4 py-3.5 text-sm leading-relaxed text-white outline-none placeholder:text-[#444] transition-all duration-300 focus:border-cyan-400/40 focus:bg-white/[0.04] focus:shadow-[0_0_30px_rgba(34,211,238,0.04)]"
+                  />
+                </div>
+
+                {/* SUBMIT */}
+                <div className="relative group">
+                  <button
+                    disabled={loading || !isFormValid}
+                    type="submit"
+                    className={`relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-xl py-3.5 text-sm font-semibold transition-all duration-300 ${loading || !isFormValid
+                        ? "cursor-not-allowed bg-white/[0.08] text-[#666]"
+                        : "bg-cyan-400 text-black hover:-translate-y-1 hover:bg-cyan-300 hover:shadow-[0_15px_40px_rgba(34,211,238,0.18)]"
+                      }`}
+                  >
+                    {!loading && isFormValid && (
+                      <span className="pointer-events-none absolute inset-y-0 -left-20 w-12 rotate-[20deg] bg-white/30 transition-transform duration-700 group-hover:translate-x-[500px]" />
+                    )}
+
+                    {loading ? (
+                      <>
+                        <span className="h-5 w-5 animate-spin rounded-full border-2 border-[#555] border-t-transparent" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send size={16} />
+                        Send Message
+                        <ArrowUpRight size={15} />
+                      </>
+                    )}
+                  </button>
+
+                  {/* TOOLTIP */}
+                  {!isFormValid && !loading && (
+                    <div className="pointer-events-none absolute bottom-full left-1/2 mb-3 -translate-x-1/2 whitespace-nowrap rounded-lg border border-white/10 bg-[#151515] px-3 py-2 text-[9px] text-[#aaa] opacity-0 shadow-xl transition-all duration-300 group-hover:opacity-100">
+                      {disabledMessage}
+                    </div>
+                  )}
+                </div>
+              </form>
+
+              {/* EMAIL FALLBACK */}
+              <div className="mt-8 border-t border-white/[0.08] pt-6 text-center">
+                <span className="text-[9px] uppercase tracking-[0.2em] text-[#555]">
+                  Prefer email?
+                </span>
+                <a
+                  href="mailto:anuragyad1398@gmail.com"
+                  className="ml-2 text-xs text-cyan-400 transition-colors hover:text-cyan-300 hover:underline sm:text-sm"
+                >
+                  anuragyad1398@gmail.com
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* BOTTOM LINE */}
+        <div
+          data-aos="fade-up"
+          data-aos-delay="300"
+          className="mt-20 flex flex-col gap-5 border-t border-white/[0.08] pt-7 md:flex-row md:items-center md:justify-between"
+        >
+          <div className="flex items-center gap-3">
+            <Sparkles size={14} className="text-cyan-400" />
+            <span className="text-[9px] uppercase tracking-[0.3em] text-[#555]">
+              Let's create something
+            </span>
+          </div>
+
+          <div className="text-[10px] text-[#444]">
+            © {new Date().getFullYear()} Anurag Yadav
+          </div>
+        </div>
+
       </div>
     </section>
   );
