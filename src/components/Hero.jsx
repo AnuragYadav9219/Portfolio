@@ -177,18 +177,6 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      {/* MOBILE PHOTO INDICATOR */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6 }}
-        className="absolute bottom-24 right-5 z-30 flex items-center gap-2 md:hidden"
-      >
-        <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
-        <span className="text-[9px] uppercase tracking-[0.25em] text-white/50">
-          Scroll to explore
-        </span>
-      </motion.div>
 
       {/* DESKTOP MOUSE HINT */}
       <motion.div
